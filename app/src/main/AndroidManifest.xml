@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.eclipsemagazin.mqtt.push">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:label="@string/app_name">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--用户自定义消息接收-->
+        <receiver
+            android:name="de.eclipsemagazin.mqtt.push.reciver.PushMsgReciver"
+            android:process=":mippush_v1">
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action android:name="${applicationId}.reciver.pushmsg" />
+                <!-- 接收push错误消息 -->
+                <action android:name="${applicationId}.reciver.pushmsg.erro" />
+                <!-- 接收push执行后消息 -->
+                <action android:name="${applicationId}.reciver.pushmsg.publish" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="nari.mip.pushsdk.keeplive.KeepAliveJobPush"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="nari.mip.pushsdk.services.PushService"
+            android:process=":mippush_v1" />
+    </application>
+
+</manifest>

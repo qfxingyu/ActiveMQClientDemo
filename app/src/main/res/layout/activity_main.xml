@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:minHeight="80dp" />
+
+    <Button
+        android:id="@+id/startPush"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="启动消息推送" />
+
+    <Button
+        android:id="@+id/stopPush"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="停止消息推送" />
+
+</LinearLayout>
